@@ -7,7 +7,7 @@ function only(x) {
 }
 
 describe("bennu-json", function() {
-  it("complex case", function() {
+  it("all types", function() {
     const parsed = parse.run(
       only(json),
       '[ [-56.12e-34,6,"a\\"b",{"b c":false,"d":5},true,null] ,7]'
@@ -18,7 +18,7 @@ describe("bennu-json", function() {
     );
   });
 
-  it("two numbers", function() {
+  it("two numbers with spaces", function() {
     const parsed = parse.run(
       only(json),
       '[ 1 , 2 ]'
