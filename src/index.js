@@ -4,7 +4,10 @@ import {text, lang, parse} from 'bennu';
 function grouping(open, item, joiner, close) {
   return parse.next(
     parse.next(open, ospaces),
-    lang.then(lang.sepBy(joiner, item), parse.next(ospaces, close))
+    lang.then(
+      lang.sepBy(parse.next(joiner, ospaces), lang.then(item, ospaces)),
+      close
+    )
   );
 }
 
@@ -51,8 +54,8 @@ function deepConcat(s) {
 
 const ospaces = parse.many(text.space);
 
-export const json = parse.late(() => parse.choice(
-  string, number, mapping, array, token_true, token_false, token_null));
+export const json = parse.label('json', parse.late(() => parse.choice(
+  string, number, object, array, token_true, token_false, token_null)));
 export const string = parse.next(
     text.character('"'),
     lang.then(
@@ -147,15 +150,15 @@ const NATIVEnumber = parse.enumeration(
   .map(deepConcat)
   .map(Number);
 
-export const number = NATIVEnumber;
+export const number = parse.label('number', NATIVEnumber);
 
-const joiner = lang.between(ospaces, text.character(','), ospaces);
+const joiner = text.character(',');
 const mapping_pair = parse.enumeration(
     string, ospaces, text.character(':'), ospaces, json
   ).map(s => {
     return [stream.first(s), stream.first(select.skip(4, s))];
   });
-export const array = grouping(
+export const array = parse.label('array', grouping(
     text.character('['), json, joiner, text.character(']')
   )
   .map(s => {
@@ -164,8 +167,8 @@ export const array = grouping(
       array.push(value);
     }, s);
     return array;
-  });
-const mapping = grouping(
+  }));
+export const object = parse.label('object', grouping(
     text.character('{'), mapping_pair, joiner, text.character('}')
   )
   .map(s => {
@@ -174,7 +177,7 @@ const mapping = grouping(
       obj[value[0]] = value[1];
     }, s);
     return obj;
-  });
+  }));
 export const token_true = text.string('true').map(() => true);
 export const token_false = text.string('false').map(() => false);
 export const token_null = text.string('null').map(() => null);
