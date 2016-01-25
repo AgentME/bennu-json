@@ -29,3 +29,16 @@ function jsonParse(str) {
 console.log(jsonParse('{"a": [-5.12e100, null]}'));
 // { a: [ -5.12e+100, null ] }
 ```
+
+You can also do incremental parsing with Bennu:
+
+```javascript
+var bennu = require('bennu');
+var json = require('bennu-json').json;
+
+var s1 = bennu.incremental.runInc(bennu.lang.then(json, bennu.parse.eof));
+var s2 = bennu.incremental.provideString('[123,45', s1);
+var s3 = bennu.incremental.provideString('6,789]', s2);
+console.log(bennu.incremental.finish(s3));
+// [ 123, 456, 789 ]
+```
