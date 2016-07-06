@@ -84,13 +84,17 @@ export const string = parse.next(
     )
   )
 
+const digitsNoLeadingZero = parse.enumeration(
+  text.oneOf('123456789'), parse.many(text.digit)
+).map(s => stream.cons(stream.first(s), stream.first(stream.rest(s))));
+
 // Custom implementation of number. Not completely accurate for floating point!
 const CUSTOMnumber = parse.enumeration(
     opt(text.character('-')),
     parse.enumeration(
       parse.choice(
         text.character('0').map(() => 0),
-        parse.many1(text.oneOf('123456789')).map(readDigits)
+        digitsNoLeadingZero.map(readDigits)
       ),
       opt(parse.next(text.character('.'), parse.many1(text.digit))),
       opt(
@@ -134,7 +138,7 @@ const NATIVEnumber = parse.enumeration(
     opt(text.character('-')),
     parse.choice(
       text.character('0'),
-      parse.many1(text.oneOf('123456789'))
+      digitsNoLeadingZero
     ),
     opt(parse.enumeration(text.character('.'), parse.many1(text.digit))),
     opt(

@@ -21,11 +21,11 @@ describe("bennu-json", function() {
   it("two numbers with spaces", function() {
     const parsed = parse.run(
       only(json),
-      '[ 1 , 2 ]'
+      '[ 101 , 2 ]'
     );
     assert.deepEqual(
       parsed,
-      [1, 2]
+      [101, 2]
     );
   });
 });
