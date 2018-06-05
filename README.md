@@ -1,5 +1,7 @@
 # bennu-json
 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/AgentME/bennu-json/blob/master/LICENSE.txt) [![npm version](https://img.shields.io/npm/v/bennu-json.svg?style=flat)](https://www.npmjs.com/package/bennu-json) [![CircleCI Status](https://circleci.com/gh/AgentME/bennu-json.svg?style=shield)](https://circleci.com/gh/AgentME/bennu-json)
+
 This is a JSON parser for the Bennu parser combinator library. This module is
 good for:
 
