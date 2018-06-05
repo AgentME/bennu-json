@@ -4,7 +4,7 @@
   "description": "A JSON parser for Bennu.",
   "main": "js/index.js",
   "scripts": {
-    "prepublish": "babel -s inline -d js/ src/",
+    "prepare": "babel -s inline -d js/ src/",
     "test": "mocha"
   },
   "repository": {
