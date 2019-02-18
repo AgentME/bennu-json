@@ -1,6 +1,6 @@
 # bennu-json
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/AgentME/bennu-json/blob/master/LICENSE.txt) [![npm version](https://img.shields.io/npm/v/bennu-json.svg?style=flat)](https://www.npmjs.com/package/bennu-json) [![CircleCI Status](https://circleci.com/gh/AgentME/bennu-json.svg?style=shield)](https://circleci.com/gh/AgentME/bennu-json) [![Greenkeeper badge](https://badges.greenkeeper.io/AgentME/bennu-json.svg)](https://greenkeeper.io/)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Macil/bennu-json/blob/master/LICENSE.txt) [![npm version](https://img.shields.io/npm/v/bennu-json.svg?style=flat)](https://www.npmjs.com/package/bennu-json) [![CircleCI Status](https://circleci.com/gh/Macil/bennu-json.svg?style=shield)](https://circleci.com/gh/Macil/bennu-json) [![Greenkeeper badge](https://badges.greenkeeper.io/Macil/bennu-json.svg)](https://greenkeeper.io/)
 
 This is a JSON parser for the Bennu parser combinator library. This module is
 good for:
